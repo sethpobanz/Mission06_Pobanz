@@ -6,12 +6,14 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
-var app = builder.Build();
-
 builder.Services.AddDbContext<Mission6ApplicationContext>(options =>
 {
-    options.UseSqlite(builder.Configuration["ConnectionString:connect"]);
+    options.UseSqlite(builder.Configuration["ConnectionStrings:connect"]);
 });
+
+var app = builder.Build();
+
+
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())

@@ -6,11 +6,18 @@ namespace Mission06_Pobanz.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        //private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        //public HomeController(ILogger<HomeController> logger)
+        //{
+        //    _logger = logger;
+        //}
+
+        private Mission6ApplicationContext _context;
+
+        public HomeController(Mission6ApplicationContext temp)
         {
-            _logger = logger;
+            _context = temp;
         }
 
         public IActionResult Index()
@@ -22,8 +29,19 @@ namespace Mission06_Pobanz.Controllers
         {
             return View();
         }
+
+        [HttpGet]
         public IActionResult addPage()
         {
+            return View();
+        }
+        
+        [HttpPost]
+        public IActionResult addPage(Application response)
+        {
+            _context.Applications.Add(response);
+            _context.SaveChanges();
+
             return View();
         }
 
