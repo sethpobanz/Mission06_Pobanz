@@ -33,16 +33,34 @@ namespace Mission06_Pobanz.Controllers
         [HttpGet]
         public IActionResult addPage()
         {
-            return View();
-        }
-        
-        [HttpPost]
-        public IActionResult addPage(Application response)
-        {
-            _context.Applications.Add(response);
-            _context.SaveChanges();
+            ViewBag.Categories = _context.Categories.OrderBy(x => x.Category).ToList();
 
             return View();
+        }
+
+        [HttpPost]
+        public IActionResult addPage(Movies response)
+        {
+            _context.Movies.Add(response);
+            _context.SaveChanges();
+
+            ViewBag.Categories = _context.Categories.OrderBy(x => x.Category).ToList(); // Repopulate ViewBag.Categories
+
+            return View();
+        }
+
+        public IActionResult table()
+        {
+            var movies = _context.Movies.OrderBy(x => x.Year).ToList();
+
+            return View(movies);
+        }
+
+        public IActionResult Edit()
+        {
+            ViewBag.Categories = _context.Categories.ToList();
+
+            return View("addPage");
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

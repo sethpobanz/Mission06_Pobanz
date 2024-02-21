@@ -8,7 +8,8 @@ namespace Mission06_Pobanz.Models
         { 
         }
 
-        public DbSet<Application> Applications { get; set; }
+        public DbSet<Movies> Movies { get; set; }
+        public DbSet<Categories> Categories { get; set; }
 
     }
 
