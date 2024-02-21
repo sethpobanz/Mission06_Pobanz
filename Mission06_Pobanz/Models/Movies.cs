@@ -17,6 +17,7 @@ namespace Mission06_Pobanz.Models
         public string Title { get; set; }
 
         [Required]
+        [Range(1888, int.MaxValue, ErrorMessage = "Year must be at least 1888")]
         public int Year { get; set; }
 
         public string? Director { get; set; }
